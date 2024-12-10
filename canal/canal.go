@@ -95,8 +95,10 @@ func NewCanal(cfg *Config) (*Canal, error) {
 		return nil, errors.Trace(err)
 	}
 
-	if err := c.checkBinlogRowFormat(); err != nil {
-		return nil, errors.Trace(err)
+	if !cfg.AllowStatementBinLog {
+		if err := c.checkBinlogRowFormat(); err != nil {
+			return nil, errors.Trace(err)
+		}
 	}
 
 	if err := c.initTableFilter(); err != nil {

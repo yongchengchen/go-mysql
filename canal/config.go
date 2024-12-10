@@ -112,6 +112,8 @@ type Config struct {
 	// the default value is 10240.
 	// if you table contain large columns, you can decrease this value to avoid OOM.
 	EventCacheCount int
+
+	AllowStatementBinLog bool
 }
 
 func NewConfigWithFile(name string) (*Config, error) {
